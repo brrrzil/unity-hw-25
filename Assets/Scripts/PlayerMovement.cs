@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,10 +12,13 @@ public class PlayerMovement : MonoBehaviour
     private int i = 0;
     private Animator animator;
 
+    [SerializeField] private PlayableDirector timeline;
+
     private void Start()
     {
         animator = GetComponent<Animator>();
     }
+
     void Update()
     {
         target = targets[i].gameObject;
@@ -24,6 +28,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.gameObject.name.Contains("Fence"))
+        {
+            timeline.Play();
+        }
+
         if (other.gameObject.name.Contains("Target"))
         {
             i++;
@@ -36,6 +45,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         if (i == 2) animator.SetBool("Jump", true);
-        else animator.SetBool("Jump", false);
+        else animator.SetBool("Jump", false);        
     }
 }
