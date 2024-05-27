@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private int i = 0;
     private Animator animator;
 
-    [SerializeField] private PlayableDirector timeline;
+    [SerializeField] private PlayableDirector fenceTimeline;
 
     private void Start()
     {
@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.gameObject.name.Contains("Fence"))
         {
-            timeline.Play();
+            fenceTimeline.Play();
         }
 
         if (other.gameObject.name.Contains("Target"))

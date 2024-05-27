@@ -6,5 +6,14 @@ using UnityEngine.Timeline;
 
 public class FenceScript : MonoBehaviour
 {
+    [SerializeField] private PlayableDirector lightTimeline;
 
+    private AudioSource audioSource;
+
+    public void OpenGate()
+    {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.Play();
+        lightTimeline.Play();
+    }
 }
